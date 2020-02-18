@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore --ignore-pattern node_modules -- ."
   },
-  "author": "Evgeny Roskach",
+  "author": "Prasun Kr Das",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.0.0",

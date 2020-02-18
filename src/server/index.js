@@ -4,12 +4,12 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 require('dotenv').config();
-const port = process.env.PORT || 4200;
+const port = process.env.PORT || 8000;
 const DB_CONNECTION_URL = process.env.DB_CONNECTION;
 const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//console.log( DB_CONNECTION_URL );
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 //Routes
 const postsRoutes = require('./routes/posts');
 const apiRoutes = require('./routes/api');
@@ -18,13 +18,13 @@ const apiRoutes = require('./routes/api');
 app.use('/posts',postsRoutes);
 app.use('/api',apiRoutes);
 
-
+ 
 app.get("/", (req,res) => {
   res.send({ username: os.userInfo().username });
 });
 
 
-mongoose.connect(DB_CONNECTION_URL, { useNewUrlParser: true },() => {
+mongoose.connect(DB_CONNECTION_URL, { useNewUrlParser: true,useUnifiedTopology: true  },() => {
   console.log("Connected to DB");
 });
 
@@ -53,4 +53,4 @@ if (process.env.NODE_ENV === 'production') {
 /**
  * start the server
  */
-app.listen(port, () => console.log('Listening on port 4200!'));
+app.listen(port, () => console.log('Listening on port 8000!'));
